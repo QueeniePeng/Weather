@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController{
 
     @IBOutlet weak var MapView: MKMapView!
     
@@ -18,16 +18,40 @@ class MapViewController: UIViewController {
     fileprivate let locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
     
+    // segue
+    fileprivate let segueIdentifier = "ShowWeatherResult"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // location
         checkLocationServicesStatus()
         checkLocationAccessStatus()
+        
+        MapView.delegate = self
+        
+        let locationPin = LocationPin(coordinate: CLLocationCoordinate2D(latitude: Constants.MapBodyValues.Latitude, longitude: Constants.MapBodyValues.Longitude))
+        
+        // TODO: Double Tap annotation to segue, annotation location
+        MapView.addAnnotation(locationPin)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // TODO
+    func addGestureRecognizer(_ view: UIView) {
+        // tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapPerformSegue))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
     }
+    
+    func doubleTapPerformSegue(tap: UITapGestureRecognizer) {
+        MapView.isUserInteractionEnabled = false
+        
+    }
+    
+    @IBAction func GetWeather(_ sender: Any) {
+        performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
 }
 
 
@@ -76,13 +100,17 @@ extension MapViewController: CLLocationManagerDelegate {
         
         let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
         // center map
-        let initialLocation = CLLocation(latitude: locationValue.latitude, longitude: locationValue.longitude)
+        let lat = Double(round(100 * locationValue.latitude)/100)
+        let lon = Double(round(100 * locationValue.longitude)/100)
+        print("Location: \nLat: \(lat)\nLon: \(lon)")
+
+        let initialLocation = CLLocation(latitude: lat, longitude: lon)
         centerMapOnLocation(location: initialLocation)
         
         // store current location data
         DispatchQueue.main.async {
-            Constants.MapBodyValues.Latitude = locationValue.latitude
-            Constants.MapBodyValues.Longitude = locationValue.longitude
+            Constants.MapBodyValues.Latitude = lat
+            Constants.MapBodyValues.Longitude = lon
         }
     }
 }
@@ -95,4 +123,23 @@ extension MapViewController {
         MapView.setRegion(coordinateRegion, animated: true)
     }
 
+}
+
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? LocationPin {
+            let identifier = "pin"
+            var annotationView: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+                as? MKPinAnnotationView { // 2
+                dequeuedView.annotation = annotation
+                annotationView = dequeuedView
+                return annotationView
+            }
+        }
+        
+        return nil
+    }
 }
