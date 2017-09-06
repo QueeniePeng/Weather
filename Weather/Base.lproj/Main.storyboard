@@ -35,11 +35,30 @@
                     </view>
                     <connections>
                         <outlet property="MapView" destination="jfe-w6-V4r" id="ggr-MU-awc"/>
+                        <segue destination="vRW-7z-niJ" kind="show" identifier="ShowWeatherResult" id="Je3-wd-5fl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="khJ-6W-7ok">
+            <objects>
+                <viewController id="vRW-7z-niJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NF5-x6-Hdp"/>
+                        <viewControllerLayoutGuide type="bottom" id="A0m-DV-Y5w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gRC-wu-vXo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pr8-Yn-2a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="139"/>
         </scene>
     </scenes>
 </document>

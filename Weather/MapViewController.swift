@@ -18,16 +18,23 @@ class MapViewController: UIViewController {
     fileprivate let locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
     
+    // segue
+    fileprivate let segueIdentifier = "ShowWeatherResult"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // location
         checkLocationServicesStatus()
         checkLocationAccessStatus()
+        let weatherClient = WeatherClient()
+        weatherClient.WeatherDetail { (result, error) in
+            if let error = error {
+                print("error: \(error)")
+            }
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+    
 }
 
 
@@ -76,13 +83,17 @@ extension MapViewController: CLLocationManagerDelegate {
         
         let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
         // center map
-        let initialLocation = CLLocation(latitude: locationValue.latitude, longitude: locationValue.longitude)
+        let lat = Double(round(100 * locationValue.latitude)/100)
+        let lon = Double(round(100 * locationValue.longitude)/100)
+        print("Location: \nLat: \(lat)\nLon: \(lon)")
+
+        let initialLocation = CLLocation(latitude: lat, longitude: lon)
         centerMapOnLocation(location: initialLocation)
         
         // store current location data
         DispatchQueue.main.async {
-            Constants.MapBodyValues.Latitude = locationValue.latitude
-            Constants.MapBodyValues.Longitude = locationValue.longitude
+            Constants.MapBodyValues.Latitude = lat
+            Constants.MapBodyValues.Longitude = lon
         }
     }
 }

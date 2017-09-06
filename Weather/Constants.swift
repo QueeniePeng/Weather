@@ -17,13 +17,13 @@ struct Constants {
     }
     
     struct MapBodyValues {
-        static var Latitude = 0.0
-        static var Longitude = 0.0
+        static var Latitude = 41.87
+        static var Longitude = -87.62
     }
     
     struct MapResponseKeys {
         static let Weather = "weather"
-        static let MainWeather = "main"
+        static let Status = "main"
         static let Description = "description"
         
         static let CityName = "name"
