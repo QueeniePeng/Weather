@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		84CDC7E31F605C9400AABC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDC7E21F605C9400AABC58 /* AppDelegate.swift */; };
-		84CDC7E51F605C9400AABC58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDC7E41F605C9400AABC58 /* ViewController.swift */; };
+		84CDC7E51F605C9400AABC58 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDC7E41F605C9400AABC58 /* MapViewController.swift */; };
 		84CDC7E81F605C9400AABC58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CDC7E61F605C9400AABC58 /* Main.storyboard */; };
 		84CDC7EA1F605C9400AABC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CDC7E91F605C9400AABC58 /* Assets.xcassets */; };
 		84CDC7ED1F605C9400AABC58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CDC7EB1F605C9400AABC58 /* LaunchScreen.storyboard */; };
+		84CDC7F51F605ED700AABC58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDC7F41F605ED700AABC58 /* Constants.swift */; };
+		84CDC7F71F6062C100AABC58 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDC7F61F6062C100AABC58 /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		84CDC7DF1F605C9400AABC58 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CDC7E21F605C9400AABC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84CDC7E41F605C9400AABC58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84CDC7E41F605C9400AABC58 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		84CDC7E71F605C9400AABC58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84CDC7E91F605C9400AABC58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84CDC7EC1F605C9400AABC58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84CDC7EE1F605C9400AABC58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84CDC7F41F605ED700AABC58 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		84CDC7F61F6062C100AABC58 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				84CDC7E21F605C9400AABC58 /* AppDelegate.swift */,
-				84CDC7E41F605C9400AABC58 /* ViewController.swift */,
+				84CDC7F41F605ED700AABC58 /* Constants.swift */,
+				84CDC7F61F6062C100AABC58 /* Alert.swift */,
+				84CDC7E41F605C9400AABC58 /* MapViewController.swift */,
 				84CDC7E61F605C9400AABC58 /* Main.storyboard */,
 				84CDC7E91F605C9400AABC58 /* Assets.xcassets */,
 				84CDC7EB1F605C9400AABC58 /* LaunchScreen.storyboard */,
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84CDC7E51F605C9400AABC58 /* ViewController.swift in Sources */,
+				84CDC7E51F605C9400AABC58 /* MapViewController.swift in Sources */,
 				84CDC7E31F605C9400AABC58 /* AppDelegate.swift in Sources */,
+				84CDC7F71F6062C100AABC58 /* Alert.swift in Sources */,
+				84CDC7F51F605ED700AABC58 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
