@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController{
 
     @IBOutlet weak var MapView: MKMapView!
     
@@ -26,14 +26,31 @@ class MapViewController: UIViewController {
         // location
         checkLocationServicesStatus()
         checkLocationAccessStatus()
-        let weatherClient = WeatherClient()
-        weatherClient.WeatherDetail { (result, error) in
-            if let error = error {
-                print("error: \(error)")
-            }
-        }
+        
+        MapView.delegate = self
+        
+        let locationPin = LocationPin(coordinate: CLLocationCoordinate2D(latitude: Constants.MapBodyValues.Latitude, longitude: Constants.MapBodyValues.Longitude))
+        
+        // TODO: Double Tap annotation to segue, annotation location
+        MapView.addAnnotation(locationPin)
     }
     
+    // TODO
+    func addGestureRecognizer(_ view: UIView) {
+        // tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapPerformSegue))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+    }
+    
+    func doubleTapPerformSegue(tap: UITapGestureRecognizer) {
+        MapView.isUserInteractionEnabled = false
+        
+    }
+    
+    @IBAction func GetWeather(_ sender: Any) {
+        performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
     
 }
 
@@ -106,4 +123,23 @@ extension MapViewController {
         MapView.setRegion(coordinateRegion, animated: true)
     }
 
+}
+
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? LocationPin {
+            let identifier = "pin"
+            var annotationView: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+                as? MKPinAnnotationView { // 2
+                dequeuedView.annotation = annotation
+                annotationView = dequeuedView
+                return annotationView
+            }
+        }
+        
+        return nil
+    }
 }

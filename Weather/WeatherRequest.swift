@@ -12,7 +12,7 @@ struct WeatherRequest {
     
     
     // Weather example
-    // http://api.openweathermap.org/data/2.5/weather?apikey=a05aaae4b68e837f3062dcd6d31d5655&lat=37&lon=-122
+    // https://api.openweathermap.org/data/2.5/weather?apikey=a05aaae4b68e837f3062dcd6d31d5655&lat=37&lon=-122
 
     
     var weatherURL: Foundation.URL? {
@@ -20,7 +20,7 @@ struct WeatherRequest {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/date/2.5/weather"
+        urlComponents.path = "/data/2.5/weather"
         urlComponents.query = "apikey=\(Constants.ApiKey)&\(Constants.MapBodyKeys.Lattitude)=\(Constants.MapBodyValues.Latitude)&\(Constants.MapBodyKeys.Longitude)=\(Constants.MapBodyValues.Longitude)"
         
         print(urlComponents.url!)

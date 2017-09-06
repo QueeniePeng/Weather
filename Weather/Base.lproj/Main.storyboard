@@ -24,12 +24,24 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jfe-w6-V4r">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAV-Oq-e9I">
+                                <rect key="frame" x="125" y="592" width="124" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Get Weather!">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="GetWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bnc-fe-sL1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jfe-w6-V4r" secondAttribute="bottom" id="1Q2-fo-P0a"/>
                             <constraint firstItem="jfe-w6-V4r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BXE-yI-Fo9"/>
+                            <constraint firstItem="mAV-Oq-e9I" firstAttribute="top" secondItem="jfe-w6-V4r" secondAttribute="bottom" constant="-75" id="NOF-Xd-go1"/>
                             <constraint firstAttribute="trailing" secondItem="jfe-w6-V4r" secondAttribute="trailing" id="aJG-cz-dTk"/>
+                            <constraint firstItem="mAV-Oq-e9I" firstAttribute="centerX" secondItem="jfe-w6-V4r" secondAttribute="centerX" id="xE6-y5-4Dz"/>
                             <constraint firstItem="jfe-w6-V4r" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xQ4-FD-3U5"/>
                         </constraints>
                     </view>
@@ -42,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Weather View Controller-->
         <scene sceneID="khJ-6W-7ok">
             <objects>
-                <viewController id="vRW-7z-niJ" sceneMemberID="viewController">
+                <viewController id="vRW-7z-niJ" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NF5-x6-Hdp"/>
                         <viewControllerLayoutGuide type="bottom" id="A0m-DV-Y5w"/>
@@ -53,8 +65,59 @@
                     <view key="view" contentMode="scaleToFill" id="gRC-wu-vXo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CityName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-ji-tSj">
+                                <rect key="frame" x="131.5" y="150" width="112" height="30"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4Q-Zi-Eet">
+                                <rect key="frame" x="76.5" y="190" width="222" height="107.5"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="90"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Rw-Qxk">
+                                <rect key="frame" x="151" y="327.5" width="73.5" height="34.5"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-Jd-vxH">
+                                <rect key="frame" x="144.5" y="392" width="86" height="40"/>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzz-BV-zL3">
+                                <rect key="frame" x="125.5" y="462" width="125.5" height="40"/>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33725490200000002" green="0.70588235290000001" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="C4Q-Zi-Eet" firstAttribute="top" secondItem="zfe-ji-tSj" secondAttribute="bottom" constant="10" id="1KO-2c-SW4"/>
+                            <constraint firstItem="zIr-Rw-Qxk" firstAttribute="centerX" secondItem="gRC-wu-vXo" secondAttribute="centerX" id="49C-K7-QS5"/>
+                            <constraint firstItem="zfe-ji-tSj" firstAttribute="centerX" secondItem="gRC-wu-vXo" secondAttribute="centerX" id="Bf7-oU-Ski"/>
+                            <constraint firstItem="4S7-Jd-vxH" firstAttribute="centerX" secondItem="gRC-wu-vXo" secondAttribute="centerX" id="D5x-dZ-Lpi"/>
+                            <constraint firstItem="4S7-Jd-vxH" firstAttribute="top" secondItem="zIr-Rw-Qxk" secondAttribute="bottom" constant="30" id="LkS-D6-5HJ"/>
+                            <constraint firstItem="C4Q-Zi-Eet" firstAttribute="centerY" secondItem="gRC-wu-vXo" secondAttribute="centerY" constant="-90" id="Lu1-6o-bgc"/>
+                            <constraint firstItem="xzz-BV-zL3" firstAttribute="top" secondItem="4S7-Jd-vxH" secondAttribute="bottom" constant="30" id="Uu5-s6-uzc"/>
+                            <constraint firstItem="zIr-Rw-Qxk" firstAttribute="top" secondItem="C4Q-Zi-Eet" secondAttribute="bottom" constant="30" id="jzw-m7-iX7"/>
+                            <constraint firstItem="C4Q-Zi-Eet" firstAttribute="centerX" secondItem="gRC-wu-vXo" secondAttribute="centerX" id="o0M-OR-Tx4"/>
+                            <constraint firstItem="xzz-BV-zL3" firstAttribute="centerX" secondItem="gRC-wu-vXo" secondAttribute="centerX" id="x0s-OH-cNm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="LBCity" destination="zfe-ji-tSj" id="YhL-1o-RUv"/>
+                        <outlet property="LBHumidity" destination="xzz-BV-zL3" id="n9b-1I-AAF"/>
+                        <outlet property="LBSpeed" destination="4S7-Jd-vxH" id="5Ir-WN-UHg"/>
+                        <outlet property="LBStatus" destination="zIr-Rw-Qxk" id="FAd-Vv-BV8"/>
+                        <outlet property="LBTemp" destination="C4Q-Zi-Eet" id="deA-sv-gR4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pr8-Yn-2a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
